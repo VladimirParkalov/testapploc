@@ -2,6 +2,7 @@
 /tmp/*
 /logs/*
 .idea/*
+.idea/workspace.xml
 .idea/vcs.xml
 logs/
 tmp/
