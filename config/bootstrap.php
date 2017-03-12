@@ -220,3 +220,5 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+Type::map('cipher', 'App\Database\Type\cipherType');

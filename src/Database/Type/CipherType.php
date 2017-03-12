@@ -8,9 +8,9 @@
 
 namespace App\Database\Type;
 
-use App\Database\Driver;
-use App\Database\Type;
-use App\Utility;
+use Cake\Database\Driver;
+use Cake\Database\Type;
+use Cake\Utility\Security;
 
 class CipherType extends Type
 {

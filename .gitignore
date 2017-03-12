@@ -5,3 +5,5 @@
 .idea/vcs.xml
 logs/
 tmp/
+/vendor
+/vendor/*
