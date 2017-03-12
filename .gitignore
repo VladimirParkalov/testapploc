@@ -1,4 +1,7 @@
-/vendor/*
 /config/app.php
 /tmp/*
 /logs/*
+.idea/*
+.idea/vcs.xml
+logs/
+tmp/
