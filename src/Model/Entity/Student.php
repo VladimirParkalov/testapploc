@@ -36,10 +36,4 @@ class Student extends Entity
         return $this->_properties['first_name'] . '  ' . $this->_properties['last_name'];
     }
 
-    protected function _setPassword($password)
-    {
-        return (new DefaultPasswordHasher)->hash($password);
-    }
-
-
 }

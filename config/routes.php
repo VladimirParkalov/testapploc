@@ -43,6 +43,11 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+Router::prefix('/api/*/:id', function ($routes) {
+    $routes->extensions(['json']);
+    $routes->resources('Courses');
+});
+
 Router::scope('/', function (RouteBuilder $routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -54,8 +59,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-
+//    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+//    $routes->connect('/api/*/:id', ['controller' => 'Api', 'action' => 'display']);
     /**
      * Connect catchall routes for all controllers.
      *

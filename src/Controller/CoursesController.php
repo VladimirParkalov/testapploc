@@ -33,9 +33,9 @@ class CoursesController extends AppController
      */
     public function view($id = null)
     {
-        $course = $this->Courses->get($id, [
-            'contain' => ['Students', 'Teachers']
-        ]);
+        $course = $this->Courses->find('all')
+            ->contain(['Students','Teachers'])
+            ->where(['courses.id IS' => $id]);
 
         $this->set('course', $course);
         $this->set('_serialize', ['course']);
@@ -123,7 +123,7 @@ class CoursesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $course = $this->Courses->get($id);
+        $course = $this->Courses->find()->where(['Courses.id IS'=>$id]);
         if ($this->Courses->delete($course)) {
             $this->Flash->success(__('The course has been deleted.'));
         } else {

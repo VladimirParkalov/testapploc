@@ -5,7 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\Database\Schema\Table as Schema;
+use \Cake\Database\Schema\TableSchema as TableSchema;
 
 /**
  * Students Model
@@ -22,8 +22,6 @@ use Cake\Database\Schema\Table as Schema;
  */
 class StudentsTable extends Table
 {
-
-//    public $encryptedFields = array('first_name', 'last_name');
     /**
      * Initialize method
      *
@@ -45,11 +43,11 @@ class StudentsTable extends Table
         ]);
     }
 
-    protected function _initializeSchema(Schema $table)
+    protected function _initializeSchema(TableSchema $schema)
     {
-        $table->columnType('first_name', 'cipher');
-        $table->columnType('last_name', 'cipher');
-        return $table;
+        $schema->columnType('first_name', 'cipher');
+        $schema->columnType('last_name', 'cipher');
+        return $schema;
     }
 
     /**
@@ -75,32 +73,4 @@ class StudentsTable extends Table
         return $validator;
     }
 
-//    public function beforeSave($event, $entity, $options)
-//    {
-////        pr($this->students);
-//        foreach($this->encryptedFields as $fieldName)
-//        {
-//            if(!empty($this->data[$entity->students][$fieldName]))
-//            {
-//                $this->data[$entity->students][$fieldName] = Security::rijndael(
-//                    $this->data[$entity->students][$fieldName], Configure::read('Security.key'), 'encrypt'
-//                );
-//            }
-//        }
-//        return true;
-//    }
-//
-//    public function afterFind($event, $entity, $options)
-//    {
-//        foreach($this->encryptedFields as $fieldName)
-//        {
-//            if(!empty($results[$this->students][$fieldName]))
-//            {
-//                $results[$this->students][$fieldName] = Security::rijndael(
-//                    $results[$this->students][$fieldName], Configure::read('Security.key'), 'decrypt'
-//                );
-//            }
-//        }
-//        return $results;
-//    }
 }
