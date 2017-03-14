@@ -50,32 +50,38 @@ class ApiController extends AppController
                 ->toArray();
         }
 
-        if(!$this->request->is('ajax'))
+        if (isset($course) && !empty($course))
         {
-            // Set Out Format View
-            $this->viewBuilder()->setClassName('json');
-
-            if (isset($course) && !empty($course))
+            foreach ($course as $item)
             {
-                foreach ($course as $item)
+                if(isset($item['students']))
                 {
-                    if(isset($item['students']))
+                    foreach ($item['students'] as &$student)
                     {
-                        foreach ($item['students'] as &$student)
-                        {
-                            unset($student['_joinData']);
-                        }
+                        unset($student['_joinData']);
                     }
                 }
             }
         }
+
+        if($this->request->is('ajax'))
+        {
+            $this->response = $this->response->withDisabledCache();
+            $students = [];
+            if(isset($course[0]['students']))
+            {
+                $students = $course[0]['students'];
+            }
+            $this->set('course',$students );
+            $this->render('courses');
+        }
         else
         {
-
+            // Set Out Format View
+            $this->viewBuilder()->setClassName('json');
+            $this->set('course', $course);
+            $this->set('_serialize', ['course']);
         }
-
-        $this->set('course', $course);
-        $this->set('_serialize', ['course']);
     }
 
 }

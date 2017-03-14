@@ -33,9 +33,9 @@ class CoursesController extends AppController
      */
     public function view($id = null)
     {
-        $course = $this->Courses->find('all')
-            ->contain(['Students','Teachers'])
-            ->where(['courses.id IS' => $id]);
+        $course = $this->Courses->get($id, [
+            'contain' => ['Students', 'Teachers']
+        ]);
 
         $this->set('course', $course);
         $this->set('_serialize', ['course']);

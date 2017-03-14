@@ -35,7 +35,7 @@ class PagesController extends AppController
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         // Set the layout
-        $this->viewBuilder()->setLayout('frontend');
+//        $this->viewBuilder()->setLayout('frontend');
         /*
          * Enable the following components for recommended CakePHP security settings.
          * see http://book.cakephp.org/3.0/en/controllers/components/security.html
